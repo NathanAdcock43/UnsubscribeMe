@@ -1,0 +1,39 @@
+version: '3'
+services:
+  # PostgreSQL Service
+  postgres-unsubscribe-data:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: ${UNSUBSCRIBE_POSTGRES_DB}
+      POSTGRES_USER: ${UNSUBSCRIBE_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${UNSUBSCRIBE_POSTGRES_PASSWORD}
+    ports:
+      - "5433:5432" # Custom port to avoid conflicts with other Postgres instances
+    volumes:
+      - unsubscribe-postgres-data:/var/lib/postgresql/data
+
+  # Redis Service
+  redis-unsubscribe-cache:
+    image: redis:6.2
+    ports:
+      - "6380:6379" # Custom port to avoid conflicts with other Redis instances
+    volumes:
+      - redis-unsubscribe-cache:/data
+
+  # pgAdmin for managing Postgres
+  pgadmin-unsubscribe:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${UNSUBSCRIBE_PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${UNSUBSCRIBE_PGADMIN_PASSWORD}
+    ports:
+      - "5051:80" # Custom port to avoid conflicts with other pgAdmin instances
+    volumes:
+      - pgadmin-unsubscribe-data:/var/lib/pgadmin
+    depends_on:
+      - postgres-unsubscribe-data
+
+volumes:
+  unsubscribe-postgres-data:
+  redis-unsubscribe-cache:
+  pgadmin-unsubscribe-data:

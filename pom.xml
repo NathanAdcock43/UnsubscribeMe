@@ -52,6 +52,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Spring Boot Starter Test for Redis Cache -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
         <!-- Accessing gmail through the Google api -->
         <dependency>
             <groupId>com.google.api-client</groupId>
@@ -65,9 +71,16 @@
             <version>1.33.1</version>
         </dependency>
 
+        <!-- To load from .env file -->
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>dotenv-java</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+
 <!--        <dependency>-->
 <!--            <groupId>com.google.apis</groupId>-->
-<!--            <artifactId>google-api-services-gmail</artifactId>-->
+<!--            <artifactId>google-api-com.nathan.unsubscribe.services-gmail</artifactId>-->
 <!--            <version>.</version>-->
 <!--        </dependency>-->
 

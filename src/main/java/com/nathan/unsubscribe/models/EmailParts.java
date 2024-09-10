@@ -6,28 +6,27 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "unsubscribe_uri")
+@Table(name = "email_parts")
 @NoArgsConstructor
 @AllArgsConstructor
-public class UnsubscribeURI {
+public class EmailParts {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="uri", nullable=false)
-    private String uri;
+    @Column(name="part_id")
+    private String partId;
 
-    @Column(name="host")
-    private String host;
+    @Column(name="mime_type")
+    private String mimeType;
+
+    @Lob
+    @Column(name="content")
+    private String content;
 
     @ManyToOne
     @JoinColumn(name="email_id", nullable=false)
     private Emails emails;
-
-    @ManyToOne
-    @JoinColumn(name="vendor_id")
-    private Vendors vendors;
 }
-
 

@@ -6,28 +6,20 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "unsubscribe_uri")
+@Table(name = "email_labels")
 @NoArgsConstructor
 @AllArgsConstructor
-public class UnsubscribeURI {
+public class EmailLabels {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="uri", nullable=false)
-    private String uri;
-
-    @Column(name="host")
-    private String host;
+    @Column(name="label")
+    private String label;
 
     @ManyToOne
     @JoinColumn(name="email_id", nullable=false)
     private Emails emails;
-
-    @ManyToOne
-    @JoinColumn(name="vendor_id")
-    private Vendors vendors;
 }
-
 
